@@ -17,7 +17,7 @@ def random_python_quote():
     only difference is that we have to reorder the
     text randomly when we print it.
 '''
-text = ["there", "is", "a", "cow"]
+text = ["there", "is", "a", "bae", "cow", "here"]
 # This is used to randomly place the randomly chosen word.
 
 # DO NOT DO THIS! THIS IS AN ANTI-PATTERN.
@@ -47,14 +47,45 @@ Sudo Code:
 '''
 
 
+# Function that chooses a random index.
 def random_index():
     rand_index = random.randint(0, len(text) - 1)
     return rand_index
 
 
+# Function to shuffle the text.
 def random_text_quote():
-    text[random_index()], text[random_index()] = text[random_index()], text[random_index()]
+    # For-Loop that repeats the code 20 times.
+    for i in range(0, 20):
+        firstIndex = random_index()
+        secondIndex = random_index()
+        while secondIndex == firstIndex:
+            secondIndex = random_index()
+            break
+        text[firstIndex], text[secondIndex] = text[secondIndex], text[firstIndex]
     return text
+
+
+# Function to reverse the string.
+def reverse_sentence():
+    numberOfIterations = len(text)/2
+    # differenceInChange when indexNumber = 0
+    for i in range(0, numberOfIterations):
+        # Every index increment, the difference changes by -2.
+        firstIndex = text[i]  # indexNumber is 0
+        print("First index: ", firstIndex)
+        secondIndex = text[-i - 1]
+        print("Second index: ", secondIndex)
+        text[i], text[-i - 1] = text[-i - 1], text[i]
+        print("text: ", text)
+    return text
+
+
+word = "Harambe"
+
+# Anagram generator function.
+def anagram_generator():
+    
 
 
 # This code runs and prints the quote chosen.
@@ -62,8 +93,13 @@ if __name__ == '__main__':
     # First Challenge
     quote = random_python_quote()
     print(quote)
-    randomText = random_text_quote()
-    print(randomText)
+    # Second challenge
+    # randomText = random_text_quote()
+    # print(randomText)
+    # Stretch Challenge 1
+    strecthChallenge = reverse_sentence()
+    print("Reversed Text: ", strecthChallenge)
+
     ''' # Second Challenge
         randomText = random_text_quote()
         # What ever that is left on the text array, add it.
