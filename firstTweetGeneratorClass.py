@@ -80,14 +80,6 @@ def reverse_sentence():
         print("text: ", text)
     return text
 
-
-word = "Harambe"
-
-# Anagram generator function.
-def anagram_generator():
-    
-
-
 # This code runs and prints the quote chosen.
 if __name__ == '__main__':
     # First Challenge
