@@ -1,5 +1,5 @@
 import random
-
+# import shuffle
 
 '''
 SUDO CODE:
@@ -20,20 +20,13 @@ def random_index(text):
     rand_index = random.randint(0, len(text) - 1)
     return rand_index
 
-
-# Getting the entire text.
-# getting_entire_text = text_file.read()
-# print("=== getting_entire_text ===")
-# print(getting_entire_text)
-
-
 # Getting a line from the text.
-getting_one_line = text_file.readline()
-print("=== getting_one_line ===")
-print(getting_one_line)
+getting_entire_text = text_file.read()
+print("=== getting_entire_text ===")
+print(getting_entire_text)
 print("=== splitting the lines ===")
-splitted_string = getting_one_line.split()
-print(splitted_string)
+splitted_list = getting_entire_text.split()
+print(splitted_list)
 
 
 # Function to shuffle the text.
@@ -48,17 +41,40 @@ def shuffle(text):
             # If it's the same, repeat random index method.
             secondIndex = random_index(text)
             break
-        # Stores first random number in tempValue
         text[firstIndex], text[secondIndex] = text[secondIndex], text[firstIndex]
     return text
 
+
+# New scrambled list of text.
+new_scrambled_list = shuffle(splitted_list)
+# New sentence contains 5 random words from text.
+new_sentence = []
+# Loops five times to get 5 random words.
+for i in range(0, 5):
+    # Getting the random words using its random index value
+    random_words_selected = random_index(new_scrambled_list)
+    # Appending the new index number to the new_sentence array.
+    new_sentence.append(new_scrambled_list[random_words_selected])
 
 # Closing the text_file.
 text_file.close()
 print("=== Closing Horatius.txt ===")
 
+'''
+To make an autocorrect generator:
+    # If we have a String as an argument for a function
+    # We can .split() the String to seperate each alphabet
+    # Find the first alphabet in using the 1 index number
+    # e.g. if the alphabet is 'f', loop through the entire list of words
+    # Split all the words so this will create arrays within arrays
+    # Loop through the arrays to find if any of the first index value
+      from any of the arrays matches the alphabet 'f'
+    # Print all the arrays that matches the alphabet 'f'
+    # Use the .join() method to undo the split method
+'''
 
+# Used to add space for the words.
+# print(text, end=" ")
 # This code runs and prints the quote chosen.
 if __name__ == '__main__':
-    new_sentence = shuffle(splitted_string)
     print(new_sentence)

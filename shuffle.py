@@ -32,6 +32,8 @@ def shuffle():
 
 
 # This code runs and prints the quote chosen.
+# __name__ refers to a Python system variable.
+# If it's run from the Terminal, do this.
 if __name__ == '__main__':
     randomText = shuffle()
     print(randomText)
