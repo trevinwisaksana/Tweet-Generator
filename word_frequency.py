@@ -25,21 +25,30 @@ repeated_words_list = []
 
 
 # An function that stores the word in the repeated_words_list
-def repeated_words_counter(text):
+def histogram(text):
+    # Reading and splitting the words to be selectable.
+    entire_text = text.read().split()
     # For loop through each object in array.
-    for i in text:
-        # If the word doesn't match
-        if i not in repeated_words_list:
-            # If it doesn't match, create a new array
-            repeated_words_list.append([i.lower()])
-            print("New array")
-        # If the word already exists in the array.
-        if i.lower() in repeated_words_list:
-            # The index value of the word in the repeated_words_list array
-            word_index = repeated_words_list.index(i.lower())
-            # Append to the nested word array in the repeated_words_list
-            repeated_words_list[word_index].append(i.lower())
-            print("Appended again")
+    for i in range(0, len(entire_text)):
+        # Contains the word
+        any_word = entire_text[i]
+        # If a word from entire_text matches with a word in repeated_words_list
+        if any(any_word in entire_text for any_word in repeated_words_list):
+            # If it matches with a word
+            repeated_words_list[i].append([any_word.lower()])
+            print("Appended to existing array")
+        repeated_words_list.append([any_word.lower()])
+        print("New array")
+
+
+# A function that uses dictionaries as a word counter.
+def repeated_words_counter_dict(text):
+    # Entire text
+    entire_splitted_text = text.read().split()
+    # Dictionary that contains the new word
+    word_dict = {}
+    # Loops through each word in the entire text
+    for word in text:
 
 
 '''
@@ -54,22 +63,8 @@ SUDO CODE:
 # If not, they are are commonly used words
 '''
 
-
-# Histogram Functions
-def histogram(text):
-    # Reading and splitting the words to be selectable.
-    entire_text = text.read().split()
-    # The repeated_words_counter to find similar words.
-    repeated_words_counter(entire_text)
-
-
-# Unique Words Function
-
-
-# Frequency Function
-
 if __name__ == "__main__":
     testing = histogram(source_text)
     # print(testing)
     list = repeated_words_list
-    print(list)
+    print("Repeated Words List: ", list)
