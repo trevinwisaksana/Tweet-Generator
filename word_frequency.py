@@ -18,38 +18,54 @@ number of times that word appears in a text. For example, when given the word
 # Opening the source text which is Beawulf.txt
 source_text = open("Horatius.txt", "r")
 
-
 # Contains a list of repeated words
 repeated_words_list = []
 # repeated_words_list = [[] for i in range(0, len(entire_text))]
 
 
 # An function that stores the word in the repeated_words_list
-def histogram(text):
+def list_histogram(text):
     # Reading and splitting the words to be selectable.
     entire_text = text.read().split()
     # For loop through each object in array.
-    for i in range(0, len(entire_text)):
-        # Contains the word
-        any_word = entire_text[i]
+    for new_word in entire_text:
+        # Bool
+        already_appended = False
+        # Lowercasing the new word
+        new_word = new_word.lower()
+        # any_word = entire_text[i]
         # If a word from entire_text matches with a word in repeated_words_list
-        if any(any_word in entire_text for any_word in repeated_words_list):
-            # If it matches with a word
-            repeated_words_list[i].append([any_word.lower()])
-            print("Appended to existing array")
-        repeated_words_list.append([any_word.lower()])
-        print("New array")
+        for word_num_list in repeated_words_list:
+            if new_word == word_num_list[0]:
+                word_num_list[1] += 1
+                already_appended = True
+        # If we don't use the if statement, it would still append the added numbered array.
+        # e.g. there will be three [of, 1]'s such as [of, 1], [of, 2], [of, 3].
+        if already_appended is False:
+            repeated_words_list.append([new_word, 1])
+            print("New array")
+    print(repeated_words_list)
 
 
 # A function that uses dictionaries as a word counter.
-def repeated_words_counter_dict(text):
+def dict_histogram(text):
     # Entire text
     entire_splitted_text = text.read().split()
     # Dictionary that contains the new word
     word_dict = {}
+    # Counter contains the int for the frequency
+    # word_frequency = 0
     # Loops through each word in the entire text
-    for word in text:
-
+    for word in entire_splitted_text:
+        word = word.lower()
+        # Going to every word and makes the Value 1 because it's the first word there.
+        if word in word_dict.keys():
+            # If the word matches a dictionary key, then append the Value by 1
+            word_dict[word] += 1
+        else:
+            # If not, add a new key value pair to the dictionary
+            word_dict[word] = 1
+    print(word_dict)
 
 '''
 SUDO CODE:
@@ -64,7 +80,4 @@ SUDO CODE:
 '''
 
 if __name__ == "__main__":
-    testing = histogram(source_text)
-    # print(testing)
-    list = repeated_words_list
-    print("Repeated Words List: ", list)
+    testing = dict_histogram(source_text)
