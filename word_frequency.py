@@ -23,7 +23,7 @@ repeated_words_list = []
 # repeated_words_list = [[] for i in range(0, len(entire_text))]
 
 
-# An function that stores the word in the repeated_words_list
+# An function that stores counts the word frequency using lists.
 def list_histogram(text):
     # Reading and splitting the words to be selectable.
     entire_text = text.read().split()
@@ -47,7 +47,7 @@ def list_histogram(text):
     print(repeated_words_list)
 
 
-# A function that uses dictionaries as a word counter.
+# A function that uses dictionaries as a word frequency counter.
 def dict_histogram(text):
     # Entire text
     entire_splitted_text = text.read().split()
@@ -57,6 +57,7 @@ def dict_histogram(text):
     # word_frequency = 0
     # Loops through each word in the entire text
     for word in entire_splitted_text:
+        # Removing all the capital letters from words.
         word = word.lower()
         # Going to every word and makes the Value 1 because it's the first word there.
         if word in word_dict.keys():
@@ -65,7 +66,7 @@ def dict_histogram(text):
         else:
             # If not, add a new key value pair to the dictionary
             word_dict[word] = 1
-    print(word_dict)
+    return word_dict
 
 '''
 SUDO CODE:
