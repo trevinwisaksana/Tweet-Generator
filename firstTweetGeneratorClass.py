@@ -48,8 +48,8 @@ Sudo Code:
 
 
 # Function that chooses a random index.
-def random_index():
-    rand_index = random.randint(0, len(text) - 1)
+def random_index(source_text):
+    rand_index = random.randint(0, len(source_text) - 1)
     return rand_index
 
 
