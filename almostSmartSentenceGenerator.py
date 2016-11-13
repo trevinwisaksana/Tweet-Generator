@@ -63,7 +63,8 @@ def dict_histogram(text):
     for word in entire_splitted_text:
         # Removing all the capital letters from words.
         word = word.lower()
-        # Going to every word and makes the Value 1 because it's the first word there.
+        # Going to every word and makes the Value 1 because it's the first word
+        # there.
         if word in word_dict.keys():
             # If the word matches a dictionary key, then append the Value by 1
             word_dict[word] += 1
