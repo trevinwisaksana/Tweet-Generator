@@ -27,7 +27,6 @@ SUDO CODE:
     # Return that list
 '''
 
-
 # Probability based shuffler chooses words based on probability.
 def probability_using_word_repositioning(number_of_words_in_sentence, source_of_text):
     # List that contains the new random words.
@@ -74,17 +73,19 @@ def distribution_creator(histogram):
 
 
 def sentence_creator(distribution, number_of_words_in_sentence):
-	# Array that will contain a list of words
+    # Used to remove punctuations
+    punctuations = ["!", "(", ")", "-", "[", "]", "{", "}", ";", ":", "'", "<", ">", ".", "?"]
+    # Array that will contain a list of words
     sentence = []
-	# Looping through the number of words the user wants to have in the sentence.
+    # Looping through the number of words the user wants to have in the sentence.
     for word in range(0, number_of_words_in_sentence):
-		# Getting a random number betweeen 1 - length of distribution
+        # Getting a random number betweeen 1 - length of distribution
         random_number = random.randint(1, len(distribution) - 1)
-		# Using the random number to assign the random word
+        # Using the random number to assign the random word
         random_word = distribution[random_number]
-		# Appending just the word (using random_word only
-		# will print (word, number) therefore using random_word[0]
-		# will just append the word into the sentence array.
+        # Appending just the word (using random_word only
+        # will print (word, number) therefore using random_word[0]
+        # will just append the word into the sentence array.
         sentence.append(random_word[0])
     return sentence
 
