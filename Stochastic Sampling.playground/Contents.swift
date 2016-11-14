@@ -18,14 +18,14 @@ func dictionaryHistogram(sourceText: String) -> [String]  {
     let entireSplittedText = sourceText.components(separatedBy: ", ")
     // Word dictionary 
     var wordDictionary: [String : Int] = [:]
-    // Counter contains the int for the frequency
-    var wordFrequency = 0
     // Loops through each word in the entire text 
     for word in entireSplittedText {
         // Going to every word and makes the Value 1 because it's the first word there.
         if wordDictionary.keys.contains(word) {
             // Making all words lowercased
-            wordDictionary[word.lowercased()] += 1
+            wordDictionary[word] += 1
+        } else {
+            wordDictionary[word] = 1
         }
     }
     
