@@ -27,6 +27,7 @@ repeated_words_list = []
 def list_histogram(text):
     # Reading and splitting the words to be selectable.
     entire_text = text.read().split()
+    print(entire_text)
     # For loop through each object in array.
     for new_word in entire_text:
         # Bool

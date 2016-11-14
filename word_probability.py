@@ -3,14 +3,8 @@ from word_frequency import dict_histogram
 # Importing random
 import random
 
-# Opening the source text which is Beawulf.txt
-source_text = open("Beawulf.txt", "r")
-# text_dict contains a key value pairs as histogram
-histogram = dict_histogram(source_text)
-
 # Modify the Shuffle method to:
 #   Be able to pick more the words with higher probabilities
-
 
 # Function that chooses a random index.
 def random_index(text):
@@ -72,24 +66,46 @@ def distribution_creator(histogram):
     return distribution
 
 
-def sentence_creator(distribution, number_of_words_in_sentence):
+# Chooses a random word based on frequency
+def distribution_word_picker(distribution):
+    # Total number of words in text
+    number_of_words = distribution[-1][1]
+    # Looping through every tuple in distribution array
+    for word in distribution:
+        # Getting a random number betweeen 1 to the total number of words
+        random_word_index = random.randint(1, number_of_words) 
+        if random_word_index >= word[1]:
+            print("RANDOM NUMBER: ", random_word_index)
+            print("WORD CODE ================ ", word[1])
+            # Getting the word based on the words with larger range
+            random_word = word[0]
+            # Appending just the word (using random_word only
+            # will print (word, number)) therefore using random_word[0]
+            # will just append the word into the sentence array.
+    return random_word
+
+
+# Creates a sentence with X amount of words
+def sentence_creator(distribution, number_of_types_in_sentence):
     # Used to remove punctuations
-    punctuations = ["!", "(", ")", "-", "[", "]", "{", "}", ";", ":", "'", "<", ">", ".", "?"]
+    # punctuations = ["!", "(", ")", "-", "[", "]", "{", "}", ";", ":", "'", "<", ">", ".", "?"]
     # Array that will contain a list of words
     sentence = []
     # Looping through the number of words the user wants to have in the sentence.
-    for word in range(0, number_of_words_in_sentence):
-        # Getting a random number betweeen 1 - length of distribution
-        random_number = random.randint(1, len(distribution) - 1)
-        # Using the random number to assign the random word
-        random_word = distribution[random_number]
-        # Appending just the word (using random_word only
-        # will print (word, number) therefore using random_word[0]
-        # will just append the word into the sentence array.
-        sentence.append(random_word[0])
+    for word in range(0, number_of_types_in_sentence):
+        random_word = distribution_word_picker(distribution)
+        sentence.append(random_word)
     return sentence
 
+
 if __name__ == "__main__":
+    # Opening the source text which is Beawulf.txt
+    source_text = open("Horatius.txt", "r")
+    # histogram contains a list of key value pairs
+    histogram = dict_histogram(source_text)
+    # new_distribution contains the distribution
     new_distribution = distribution_creator(histogram)
+    # 5 words picked to form a new sentence
     new_sentence = sentence_creator(new_distribution, 5)
+    # printing sentence
     print(new_sentence)
