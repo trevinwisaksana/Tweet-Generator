@@ -70,19 +70,21 @@ def distribution_creator(histogram):
 def distribution_word_picker(distribution):
     # Total number of words in text
     number_of_words = distribution[-1][1]
+    # Getting a random number betweeen 1 to the total number of words
+    random_word_index = random.randint(1, number_of_words)
     # Looping through every tuple in distribution array
+    print(random_word_index)
+    print(distribution)
     for word in distribution:
-        # Getting a random number betweeen 1 to the total number of words
-        random_word_index = random.randint(1, number_of_words) 
-        if random_word_index >= word[1]:
-            print("RANDOM NUMBER: ", random_word_index)
-            print("WORD CODE ================ ", word[1])
+        if random_word_index <= word[1]:
+            # print("RANDOM NUMBER: ", random_word_index)
+            # print("WORD CODE ================ ", word[1])
             # Getting the word based on the words with larger range
             random_word = word[0]
             # Appending just the word (using random_word only
             # will print (word, number)) therefore using random_word[0]
             # will just append the word into the sentence array.
-    return random_word
+            return random_word
 
 
 # Creates a sentence with X amount of words
@@ -100,7 +102,7 @@ def sentence_creator(distribution, number_of_types_in_sentence):
 
 if __name__ == "__main__":
     # Opening the source text which is Beawulf.txt
-    source_text = open("Horatius.txt", "r")
+    source_text = open("Fish.txt", "r")
     # histogram contains a list of key value pairs
     histogram = dict_histogram(source_text)
     # new_distribution contains the distribution
